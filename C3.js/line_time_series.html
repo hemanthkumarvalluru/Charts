@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="src/c3.css" rel="stylesheet">
+</head>
+<body>
+    <div id="chart"></div>
+</body>
+
+<script src="src/d3.v5.min.js" charset="utf-8"></script>
+<script src="src/c3.min.js"></script>
+
+<script>
+
+var dates = ['Date', '01/01/2014 01:00', '01/01/2014 02:00', '01/01/2014 03:00',
+       '01/01/2014 04:00', '01/01/2014 05:00', '01/01/2014 06:00',
+       '01/01/2014 07:00', '01/01/2014 08:00', '01/01/2014 09:00',
+       '01/01/2014 10:00', '01/01/2014 11:00', '01/01/2014 12:00']
+var values = ['Air Temp', 3.1,  3.2,  1.6,  1. ,  2.3,  0.7,  1., 1.3,  5. , 10.1, 12.2, 14.4]
+
+var chart = c3.generate({
+    data: {
+        x: 'Date',
+        xFormat: '%d/%m/%Y %H:%M', // 'xFormat' can be used as custom format of 'x'
+        columns: [dates, values
+        ]
+    },
+    axis: {
+        x: {
+            type: 'timeseries',
+            tick: {
+                format: '%d/%m/%Y %H:%M'
+            },
+            label: {
+                text: 'Date',
+                position: 'outer-middle'
+            },
+        },
+        y: {
+            label: {
+                text: 'Air Temp',
+                position: 'outer-middle'
+            },
+        }
+    },
+    zoom: {enabled: true},  // this allow us to zoom chart with mouse movement
+    subchart: {show: true}, // this can add small chart below main chart, so we can do some brush operations i.e can select region
+    legend: {
+        show: true, //false to hide
+        position: 'right'
+    }
+});
+
+<!--    from URL-->
+<!--    var chart = c3.generate({-->
+<!--        bindto: '#chart',-->
+<!--        data: {-->
+<!--            url: 'https://raw.githubusercontent.com/hemanthkumarvalluru/Charts/main/D3.js/CIMIS_Station_125.csv',-->
+<!--            type: 'line',-->
+<!--        }-->
+<!--    });-->
+</script>
+</html>
