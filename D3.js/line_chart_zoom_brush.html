@@ -88,7 +88,7 @@
         .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 
 <!--below line will throw error add url path to csv file, or read data convenient manner assign to data-->
-    d3.csv("CIMIS_Station_125.csv", type, function (error, data) {
+    d3.csv("https://raw.githubusercontent.com/hemanthkumarvalluru/Datasets/main/CIMIS_Station_125.csv", type, function (error, data) {
       if (error) throw error;
 
       x.domain(d3.extent(data, function(d) { return d.Date; }));
