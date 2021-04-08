@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Basic time Series chart in Plotly</title>
+</head>
+<body>
+    <div id="myDiv"></div>
+</body>
+
+<script src="src/plotly-latest.min.js"></script>
+
+<script>
+    Plotly.d3.csv("https://raw.githubusercontent.com/hemanthkumarvalluru/Datasets/main/CIMIS_Station_125.csv", function(err, rows){
+
+      function unpack(rows, key) {
+      return rows.map(function(row) { return row[key]; });
+    }
+
+
+    var trace1 = {
+      type: "scatter",
+      mode: "lines",
+      name: 'Temperature',
+      x: unpack(rows, 'Date'),
+      y: unpack(rows, 'Air_Temp'),
+      line: {color: '#17BECF'}
+    }
+
+
+    var data = [trace1];
+
+    var layout = {
+      margin: {b: 150},
+      title: 'Basic Time Series',
+      xaxis: {title: "Date time", titlefont: {size: 15},
+             },
+      yaxis: {title: "Air Temp"}
+    }
+
+    Plotly.newPlot('myDiv', data, layout);
+    })
+
+</script>
+</html>
